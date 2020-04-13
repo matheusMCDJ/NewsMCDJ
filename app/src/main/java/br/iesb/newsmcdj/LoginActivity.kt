@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
         btSignIn.setOnClickListener { signIn() }
         btSignUp.setOnClickListener { signUp() }
+        btForgotPassword.setOnClickListener { forgotPass() }
     }
 
     private fun signIn() {
@@ -59,5 +60,10 @@ class LoginActivity : AppCompatActivity() {
     private fun signUp() {
         val intentMain = Intent(this, CadastroActivity::class.java)
         startActivity(intentMain)
+    }
+
+    private fun forgotPass() {
+        val intentMain2 = Intent(this, ForgotPasswordActivity::class.java)
+        startActivity(intentMain2)
     }
 }
