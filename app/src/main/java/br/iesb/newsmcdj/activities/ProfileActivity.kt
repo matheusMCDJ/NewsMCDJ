@@ -1,10 +1,10 @@
-package br.iesb.newsmcdj
+package br.iesb.newsmcdj.activities
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.iesb.newsmcdj.R
-import br.iesb.newsmcdj.Profile
+import br.iesb.newsmcdj.model.Profile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

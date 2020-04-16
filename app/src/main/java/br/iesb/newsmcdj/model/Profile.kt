@@ -1,4 +1,4 @@
-package br.iesb.newsmcdj
+package br.iesb.newsmcdj.model
 
 data class Profile(
     var email: String? = null,

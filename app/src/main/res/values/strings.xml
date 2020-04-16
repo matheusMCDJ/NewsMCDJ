@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NewsMCDJ</string>
+
+    <string name="news_base_url">https://newsapi.org/v2/</string>
+
+
 </resources>

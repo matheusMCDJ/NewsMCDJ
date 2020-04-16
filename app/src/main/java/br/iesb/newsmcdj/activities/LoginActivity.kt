@@ -1,4 +1,4 @@
-package br.iesb.newsmcdj
+package br.iesb.newsmcdj.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

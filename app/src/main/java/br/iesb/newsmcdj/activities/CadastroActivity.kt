@@ -1,4 +1,4 @@
-package br.iesb.newsmcdj
+package br.iesb.newsmcdj.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
