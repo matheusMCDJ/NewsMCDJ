@@ -15,60 +15,31 @@ import kotlinx.android.synthetic.main.news_lista_lateral_item.view.tvTitle
 import kotlinx.android.synthetic.main.news_lista_lateral_item.view.*
 
 class NewsAdapter(private val dataSet: Array<News>) :
-    RecyclerView.Adapter<NewsAdapter.NewsViewHolderCard>() {
+    RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolderCard {
-        var view: View? = null
-        if (viewType == 1) {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.news_lista_lateral_item, parent, false)
-        } else {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.news_lista_lateral_item, parent, false)
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
 
-        var viewHolder: NewsViewHolderCard? = null
-
-        if (viewType == 1) {
-            viewHolder = NewsViewHolderCard(view)
-        } else {
-            viewHolder = NewsViewHolder(view)
-        }
-
-        return viewHolder
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.news_lista_lateral_item, parent, false)
+        return NewsViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return dataSet.size
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0) {
-            return 1
-        } else {
-            return 2
-        }
-    }
-
-    override fun onBindViewHolder(holder: NewsViewHolderCard, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val news = dataSet[position]
 
         holder.title.text = news.title
 
-        if (holder is NewsViewHolder) {
-            holder.description.text = news.description
-        }
+        holder.description.text = news.description
 
-        // Carrega a imagem de forma ASSÍNCRONA usando a biblioteca Picasso.
-        // Essa biblioteca cria uma thread em background e retorna uma imagem
-        // através de uma requisição HTTP.
         Picasso.get().load(news.image).into(holder.image);
     }
 
-    open class NewsViewHolderCard(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    open class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.ivImage
         val title: TextView = itemView.tvTitle
-    }
-
-    class NewsViewHolder(itemView: View) : NewsViewHolderCard(itemView) {
         val description: TextView = itemView.tvDescription
     }
 
