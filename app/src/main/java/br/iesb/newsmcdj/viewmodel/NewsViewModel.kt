@@ -28,7 +28,7 @@ class NewsViewModel(val app: Application) : AndroidViewModel(app) {
             news.forEach { n ->
                 val newNews = News(
                     releaseDate = n.releaseDate,
-                    image = "https://image.tmdb.org/t/p/w500${n.image}",
+                    image = n.image,
                     description = n.description,
                     title =  n.title
                 )
