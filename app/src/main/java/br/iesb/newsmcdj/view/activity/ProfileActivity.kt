@@ -1,4 +1,4 @@
-package br.iesb.newsmcdj.activities
+package br.iesb.newsmcdj.view.activity
 
 import android.os.Bundle
 import android.widget.Toast

@@ -1,24 +1,27 @@
-package br.iesb.newsmcdj.activities
+package br.iesb.newsmcdj.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import br.iesb.newsmcdj.R
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_cadastro.*
+import kotlinx.android.synthetic.main.activity_login.*
 
-class CadastroActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private val mAuth = FirebaseAuth.getInstance()
+    val mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cadastro)
+        setContentView(R.layout.activity_login)
 
+        btSignIn.setOnClickListener { signIn() }
         btSignUp.setOnClickListener { signUp() }
+        btForgotPassword.setOnClickListener { forgotPass() }
     }
 
-    private fun signUp() {
+    private fun signIn() {
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
 
@@ -41,15 +44,26 @@ class CadastroActivity : AppCompatActivity() {
             }
         }
 
-        val operation = mAuth.createUserWithEmailAndPassword(email, password)
+        val operation = mAuth.signInWithEmailAndPassword(email, password)
         operation.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_LONG).show()
-                finish()
+                val intentMain = Intent(this, MainActivity::class.java)
+                startActivity(intentMain)
             } else {
-                val error = task.exception?.localizedMessage ?: "Não foi possível entrar no aplicativo no momento"
+                val error = task.exception?.localizedMessage
+                    ?: "Não foi possível entrar no aplicativo no momento"
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun signUp() {
+        val intentMain = Intent(this, CadastroActivity::class.java)
+        startActivity(intentMain)
+    }
+
+    private fun forgotPass() {
+        val intentMain2 = Intent(this, ForgotPasswordActivity::class.java)
+        startActivity(intentMain2)
     }
 }
