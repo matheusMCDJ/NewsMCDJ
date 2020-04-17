@@ -12,7 +12,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 // Interface que define os Endpoints (endereços relativos a uma URL Base) no Retrofit
-interface MovieDBService {
+interface NewsService {
 
     // Cara Endpoint precisa ser configura de acordo com o método HTTP do servidor
     // No caso da API The Movie DB o endpoint para descoberta de filmes é do tipo GET
@@ -24,14 +24,15 @@ interface MovieDBService {
     fun topHeadLines(
         @Query("country") country: String = "br",
         @Query("apikey") apiKey: String = "09086e80be1f42b8a553ec80e7569c39"
+
     ): Call<NewsListDTO>
 
 }
 
 class NewsRepository(context: Context, baseUrl: String) : BaseRetrofit(context, baseUrl) {
-    private val service = retrofit.create(MovieDBService::class.java)
+    private val service = retrofit.create(NewsService::class.java)
 
-    fun topHeadLines(callback: (movies: Array<News>) -> Unit) {
+    fun topHeadLines(callback: (news: Array<News>) -> Unit) {
 
         // No Retrofit as chamadas são feitas através de um "Service" que contém as definições
         // da requisição HTTP.
@@ -45,10 +46,10 @@ class NewsRepository(context: Context, baseUrl: String) : BaseRetrofit(context, 
             //           de erros HTTP (https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status)
             override fun onResponse(call: Call<NewsListDTO>, response: Response<NewsListDTO>) {
                 val result = mutableListOf<News>()
-                val movies = response.body()?.articles
+                val news = response.body()?.articles
 
                 // Percorre a lista para converter os objetos DTO (MovieDTO) para Domínio (Movie)
-                movies?.forEach { n ->
+                news?.forEach { n ->
 
                     // Converte o DTO (Data Transfer Object para um objeto de Domínio de Negócio
                     val domain = News(
