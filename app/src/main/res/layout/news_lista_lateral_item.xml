@@ -5,12 +5,12 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#B5D1EDF1">
+    android:background="#CC0000">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E89494">
+        android:background="#ffffff">
 
         <ImageView
             android:id="@+id/ivImage"
