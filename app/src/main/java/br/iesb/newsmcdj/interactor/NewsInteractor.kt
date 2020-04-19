@@ -11,4 +11,5 @@ class NewsInteractor(private val context: Context) {
     fun topHeadLines(callback: (news: Array<News>) -> Unit) {
         newsRepository.topHeadLines(callback)
     }
+
 }

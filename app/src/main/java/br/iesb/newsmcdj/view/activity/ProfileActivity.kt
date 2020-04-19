@@ -1,5 +1,6 @@
 package br.iesb.newsmcdj.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_profile.*
+import br.iesb.newsmcdj.interactor.repository.model.ProfileRepository as ProfileRepository
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -18,6 +20,7 @@ class ProfileActivity : AppCompatActivity() {
     private val mAuth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
     private var profile: Profile? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,17 @@ class ProfileActivity : AppCompatActivity() {
         val email = mAuth.currentUser?.email
         etEmail.setText(email)
 
-        btSave.setOnClickListener { save() }
+        val profileRepository = ProfileRepository()
+
+        btSave.setOnClickListener {
+            if (email != null) {
+                val message = profileRepository.updateProfile(etEmail.text.toString(),etName.text.toString(),etPhone.text.toString())
+                Toast.makeText(this@ProfileActivity, message, Toast.LENGTH_LONG).show()
+            }
+            val intent = Intent(this, MainActivity::class.java)
+            this.finish()
+            startActivity(intent)
+        }
 
         val profiles = database.getReference("profile")
 
@@ -42,32 +55,15 @@ class ProfileActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-//                profile = snapshot.children.first().getValue(Profile::class.java)
-//                if (profile != null) {
-//                    etName.setText(profile?.name)
-//                    etPhone.setText(profile?.phone)
-//                }
+                profile = snapshot.children.first().getValue(Profile::class.java)
+                if (profile != null) {
+                    etName.setText(profile?.name)
+                    etPhone.setText(profile?.phone)
+                }
             }
         })
     }
 
-    private fun save() {
-        profile = Profile(
-            email = etEmail.text.toString(),
-            name = etName.text.toString(),
-            phone = etPhone.text.toString()
-        )
-
-        val uid = mAuth.currentUser?.uid
-
-        if (uid != null) {
-            val userProfile = database.getReference("profile/$uid")
-            userProfile.setValue(profile)
-            Toast.makeText(this@ProfileActivity, "Dados de perfil salvos!", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(this@ProfileActivity, "Não foi possível recuperar a chave do usuário!", Toast.LENGTH_LONG).show()
-        }
-    }
 
 
 }

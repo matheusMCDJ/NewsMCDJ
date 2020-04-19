@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import br.iesb.newsmcdj.R
+import br.iesb.newsmcdj.interactor.repository.model.ProfileRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
 
@@ -44,6 +45,8 @@ class CadastroActivity : AppCompatActivity() {
         val operation = mAuth.createUserWithEmailAndPassword(email, password)
         operation.addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                val profileRepository = ProfileRepository()
+                profileRepository.updateProfile(email)
                 Toast.makeText(this, "Cadastro efetuado com sucesso!", Toast.LENGTH_LONG).show()
                 finish()
             } else {
