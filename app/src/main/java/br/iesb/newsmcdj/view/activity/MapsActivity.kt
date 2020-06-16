@@ -29,12 +29,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         //Criou um método para pegar latitude e longitude
-        val sydney = LatLng(-12.9393877, -52.6244491)
+        val brasil = LatLng(-15.9662444, -47.7432393)
         //Adicionou um marcador na instancia do mapa com titulo de sydney
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marcado no Brasil"))
+        mMap.addMarker(MarkerOptions().position(brasil).title("Marcando em Brasília,Brasil"))
         //Move a camera do mapa para a posição de sydney
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(brasil, 4f))
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f)) da zoom de 15 em sydney
     }
+
 }

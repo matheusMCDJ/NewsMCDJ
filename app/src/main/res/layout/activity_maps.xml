@@ -26,7 +26,7 @@
         android:layout_height="0dp"
         android:background="#FFFFFF"
         android:backgroundTint="#CC0000"
-        android:text="Newsmcdj - Mapa"
+        android:text="Mapa Brasil"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
