@@ -37,6 +37,7 @@ class ProfileActivity : AppCompatActivity() {
 
         btSave.setOnClickListener {
             if (email != null) {
+                //uma view não pode comunicar diretamente com a repository
                 val message = profileRepository.updateProfile(etEmail.text.toString(),etName.text.toString(),etPhone.text.toString())
                 Toast.makeText(this@ProfileActivity, message, Toast.LENGTH_LONG).show()
             }
