@@ -30,12 +30,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //Criou um método para pegar latitude e longitude
         val brasil = LatLng(-15.9662444, -47.7432393)
-        //Adicionou um marcador na instancia do mapa com titulo de sydney
+        //Adicionou um marcador na instancia do mapa com titulo de :
         mMap.addMarker(MarkerOptions().position(brasil).title("Marcando em Brasília,Brasil"))
-        //Move a camera do mapa para a posição de sydney
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        //Move a camera do mapa para a posição de brasilia
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(brasil, 4f))
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f)) da zoom de 15 em sydney
+
     }
 
 }
