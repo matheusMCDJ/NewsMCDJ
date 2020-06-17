@@ -2,6 +2,7 @@
     <string name="app_name">NewsMCDJ - O seu portal de notícias</string>
 
     <string name="news_base_url">https://newsapi.org/v2/</string>
+    <string name="bot_base_url">https://dialogflow-newsmcdj.herokuapp.com/api/</string>
 
     <string name="dialogflow_base_url">https://dialogflow-newsmcdj.herokuapp.com/api/message/text/send</string>
     <string name="title_activity_maps">NewsMCDJ - Maps</string>

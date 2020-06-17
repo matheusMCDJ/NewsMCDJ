@@ -13,4 +13,3 @@ data class NewsList(
     val pageSize: Int? = null,
     val articles: Array<News>? = null
 )
-

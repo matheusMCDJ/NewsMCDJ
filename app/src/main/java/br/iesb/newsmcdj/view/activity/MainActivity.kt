@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         btMapa.setOnClickListener{
-            val intent = Intent(this, MapsActivity::class.java)
             if(checkPermission(context,permissions)){
                 Toast.makeText(context, "A permissao ja foi concedida", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
             }else{
                 requestPermissions(permissions, PERMISSION_REQUEST)
